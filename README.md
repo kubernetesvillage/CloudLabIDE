@@ -201,13 +201,14 @@ terraform destroy --auto-approve
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- This repository uses code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), licensed under the Apache-2.0.
 
 ## Credits
 
-- This repository uses code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), licensed under the Apache-2.0 License.
+
 - The CloudFormation templates have been adapted for use in the **peachycloudsecurity** EKS workshop.
-- Credits: [AWS-Samples](https://github.com/aws-samples/eks-workshop-v2/) under the [Apache-2.0 license](https://github.com/aws-samples/eks-workshop-v2/?tab=Apache-2.0-1-ov-file#readme)
+- [AWS-Samples](https://github.com/aws-samples/eks-workshop-v2/) under the [Apache-2.0 license](https://github.com/aws-samples/eks-workshop-v2/?tab=Apache-2.0-1-ov-file#readme)
 - Thanks to [coder team](https://github.com/coder/deploy-code-server)
 - Thanks to [AWS eks-workshop-v2](https://github.com/aws-samples/eks-workshop-v2/blob/main/lab/scripts/installer.sh)
 
@@ -217,3 +218,8 @@ This project is maintained by the Kubernetes Village team. Contributions are wel
 For more information, visit our [GitHub page](https://github.com/kubernetesvillage).
 
 
+## Follow us:
+
+- [Kubernetes Village](https://www.linkedin.com/company/kubernetesvillage/)
+- [Anjali Shukla](https://linktr.ee/theshukladuo)
+- [Divyanshu Shukla](https://linktr.ee/theshukladuo)
