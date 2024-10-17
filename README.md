@@ -111,7 +111,7 @@ These tools will be installed automatically by the `pre-deploy.sh` script if the
 
 - Access the github codespace to run the terraform code.
 
-    - Refer to [Codespace setup](https://ekssecurity.kubernetesvillage.com/basics/gh_deploy) for detailed step by step guide.
+    - Refer to [Codespace setup](https://ekssecurity.kubernetesvillage.com/basics/gh_deploy) for detailed step by step guide along with AWS IAM user creation.
 
 
 - Run the `pre-deploy.sh` to install binaries required for deploying infrastructure via terraform
