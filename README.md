@@ -3,7 +3,7 @@
 
 This repository contains cloudformation  & terraform templates to quickly set up VSCode (code-server) instances in the AWS environment in the `us-west-2` region. These instances are pre-configured with necessary permissions and are ready to be used for cloud security related workshops or development.
 
-> Authored by Anjali singh Shukla & Divyanshu Shukls
+> Authored by Anjali Singh Shukla & Divyanshu Shukla
 
 > As cloud9 is deprecated, for labs and learning this script has been created.
 
