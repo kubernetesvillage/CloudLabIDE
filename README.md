@@ -11,7 +11,7 @@ This repository contains cloudformation  & terraform templates to quickly set up
 
 ## Quick-Launch Links for Cloud9 (us-east-1) and VSCode (us-west-2)
 
-> [eksworkshop credit](https://www.eksworkshop.com/docs/introduction/setup/your-account/)
+> [Credit: AWS Eksworkshop](https://www.eksworkshop.com/docs/introduction/setup/your-account/)
 
 > 
 Use the AWS CloudFormation quick-create links below to launch the desired environment in your preferred AWS region.
