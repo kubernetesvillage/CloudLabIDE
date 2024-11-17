@@ -127,6 +127,14 @@ resource "aws_security_group" "ide_security_group" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  # Allow traffic on port 1337 from all IPs
+  ingress {
+    description = "Allow all traffic on port 8081"
+    from_port   = 8081
+    to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   egress {
     from_port   = 0
