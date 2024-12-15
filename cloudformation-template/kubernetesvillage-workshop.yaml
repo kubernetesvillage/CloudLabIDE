@@ -30,7 +30,7 @@ Resources:
         SecretStringTemplate: '{"username": "vscode-user"}'
         GenerateStringKey: "password"
         PasswordLength: 32
-        ExcludeCharacters: '"@/\'
+        ExcludeCharacters: '"\''@/\'
 
   # VPC
   EksVpc:
