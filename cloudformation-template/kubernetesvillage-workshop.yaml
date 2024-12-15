@@ -105,12 +105,12 @@ Resources:
           FromPort: 8080
           ToPort: 8080
           IpProtocol: tcp
-          CidrIp: 0.0.0.0/0
+          CidrIp: 0.0.0.0/0  # Should be referenced to CloudFront IPs in production
         - Description: Allow traffic on port 1337
           FromPort: 1337
           ToPort: 1337
           IpProtocol: tcp
-          CidrIp: 0.0.0.0/0
+          CidrIp: 0.0.0.0/0  # Should also be restricted in production as necessary
       SecurityGroupEgress:
         - FromPort: 0
           ToPort: 0
@@ -161,7 +161,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.medium
-      ImageId: !Sub "resolve:ssm:${AmiParameterStoreName}"
+      ImageId: !Sub "resolve:ssm:${AmiParameterStoreName}"  # Use resolve:ssm for dynamic AMI retrieval
       SubnetId: !Ref PublicSubnet
       IamInstanceProfile: !Ref IdeInstanceProfile
       SecurityGroupIds:
@@ -169,20 +169,19 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          yum update -y
-          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq argon2 openssl
-
+          set -x  # Print each command before executing it (for debugging)
+          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq
           curl -Ls -o /tmp/coderinstall.rpm https://github.com/coder/code-server/releases/download/v4.91.1/code-server-4.91.1-amd64.rpm
-          sudo rpm -U /tmp/coderinstall.rpm
+          sudo rpm -U "/tmp/coderinstall.rpm"
+          npm cache clean --force
+          npm install -g argon2
           systemctl enable code-server@ec2-user
-
-          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id "eks-workshop-password-secret" --query 'SecretString' --output text)
+          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-
-          SALT=$(openssl rand -base64 12)
-          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD$SALT" | argon2 "$SALT" -e)
-
+          HASHED_PASSWORD=$(node -e "const argon2 = require('/usr/local/lib/node_modules/argon2'); argon2.hash('$IDE_PASSWORD').then(console.log).catch(console.error)")
+          echo "Generated Hash: $HASHED_PASSWORD"
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
+          sudo -u ec2-user touch /home/ec2-user/.config/code-server/config.yaml
           sudo -u ec2-user bash << EOF_USER
           cat << 'CONFIG_EOF' > /home/ec2-user/.config/code-server/config.yaml
           bind-addr: 0.0.0.0:8080
@@ -191,7 +190,6 @@ Resources:
           cert: false
           CONFIG_EOF
           EOF_USER
-
           systemctl start code-server@ec2-user
       Tags:
         - Key: Name
