@@ -105,12 +105,12 @@ Resources:
           FromPort: 8080
           ToPort: 8080
           IpProtocol: tcp
-          CidrIp: 0.0.0.0/0  # Should be referenced to CloudFront IPs in production
+          CidrIp: 0.0.0.0/0
         - Description: Allow traffic on port 1337
           FromPort: 1337
           ToPort: 1337
           IpProtocol: tcp
-          CidrIp: 0.0.0.0/0  # Should also be restricted in production as necessary
+          CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
         - FromPort: 0
           ToPort: 0
@@ -161,7 +161,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t3.medium
-      ImageId: !Sub "resolve:ssm:${AmiParameterStoreName}"  # Use resolve:ssm for dynamic AMI retrieval
+      ImageId: !Sub "resolve:ssm:${AmiParameterStoreName}"
       SubnetId: !Ref PublicSubnet
       IamInstanceProfile: !Ref IdeInstanceProfile
       SecurityGroupIds:
@@ -169,15 +169,20 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq
+          yum update -y
+          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq argon2 openssl
+
           curl -Ls -o /tmp/coderinstall.rpm https://github.com/coder/code-server/releases/download/v4.91.1/code-server-4.91.1-amd64.rpm
-          sudo rpm -U "/tmp/coderinstall.rpm"
+          sudo rpm -U /tmp/coderinstall.rpm
           systemctl enable code-server@ec2-user
-          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
+
+          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id "eks-workshop-password-secret" --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD" | npx argon2-cli -e)
+
+          SALT=$(openssl rand -base64 12)
+          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD$SALT" | argon2 "$SALT" -e)
+
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
-          sudo -u ec2-user touch /home/ec2-user/.config/code-server/config.yaml
           sudo -u ec2-user bash << EOF_USER
           cat << 'CONFIG_EOF' > /home/ec2-user/.config/code-server/config.yaml
           bind-addr: 0.0.0.0:8080
@@ -186,6 +191,7 @@ Resources:
           cert: false
           CONFIG_EOF
           EOF_USER
+
           systemctl start code-server@ec2-user
       Tags:
         - Key: Name
