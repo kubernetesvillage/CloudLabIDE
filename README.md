@@ -1,11 +1,11 @@
+# CloudLabIDE
 
-# Cloud Based VSCode IDE (Code-server) Setup via CloudFormation & Terraform
+This repository contains CloudFormation template to quickly set up VSCode (code-server) instances in the us-west-2 region and Cloud9 (deprecated) instances in the us-east-1 region. Both setups are pre-configured with necessary permissions and are ready to be used for cloud security-related workshops or development.
 
-This repository contains cloudformation  & terraform templates to quickly set up VSCode (code-server) instances in the AWS environment in the `us-west-2` region. These instances are pre-configured with necessary permissions and are ready to be used for cloud security related workshops or development.
+> **Authored by:** Anjali Singh Shukla & Divyanshu Shukla
 
-> Authored by Anjali Singh Shukla & Divyanshu Shukla
+> **Note:** As AWS Cloud9 is deprecated, this script has been created to facilitate labs and learning environments efficiently.
 
-> As cloud9 is deprecated, for labs and learning this script has been created.
 
 ---
 
