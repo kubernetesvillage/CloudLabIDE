@@ -18,8 +18,8 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
 
 | Region         | Cloud9 (Not Recommended)                         | VSCode            |
 |----------------|-------------------------------------|---------------------------------------|
-| **us-east-1**  | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=securitydojo-eks-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/cloud9.yaml)  | XX  |
-| **us-west-2**  | XX | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=securitydojo-eks-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/kubernetesvillage-workshop.yaml) |
+| **us-east-1**  | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsecuritycloud9-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/cloud9.yaml)  | XX  |
+| **us-west-2**  | XX | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsecurity-workshop&templateURL=https://cf-templates-p4sqzd2p5kud-us-east-1.s3.amazonaws.com/kubernetesvillage-workshop.yaml) |
 
 - <b>Note: Use VSCode link in `us-west-2` for deploying code-server (VSCode IDE).</b>
 
