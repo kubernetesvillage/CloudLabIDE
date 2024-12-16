@@ -78,7 +78,7 @@ To avoid unnecessary costs, be sure to delete the CloudFormation stacks and any 
 
 ## License
 
-- This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- This project is licensed under the GPL-3.0 license. See the [LICENSE](LICENSE) file for details.
 - This repository uses code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), licensed under the Apache-2.0.
 
 ## Credits
