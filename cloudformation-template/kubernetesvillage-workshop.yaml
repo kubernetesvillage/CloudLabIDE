@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: CloudFormation template for AWS EKS Workshop Infrastructure
+Description: CloudFormation template for AWS Workshop Infrastructure by kubernetes village. Credit to AWS.
 
 Parameters:
   Region:
@@ -166,6 +166,12 @@ Resources:
       IamInstanceProfile: !Ref IdeInstanceProfile
       SecurityGroupIds:
         - !Ref IdeSecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda  # Default root volume
+          Ebs:
+            VolumeSize: 50  # Set the size to 50 GB
+            VolumeType: gp3  # Recommended for general-purpose SSD
+            DeleteOnTermination: true
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
