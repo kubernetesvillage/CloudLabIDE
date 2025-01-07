@@ -197,7 +197,7 @@ Resources:
           CONFIG_EOF
           EOF_USER
           systemctl start code-server@ec2-user
-          curl -s https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
+          curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
       Tags:
         - Key: Name
           Value: eks-workshop-ide
