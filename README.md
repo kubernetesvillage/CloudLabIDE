@@ -19,7 +19,7 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
 | Region         | Cloud9 (Not Recommended)                         | VSCode            |
 |----------------|-------------------------------------|---------------------------------------|
 | **us-east-1**  | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsecuritycloud9-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/cloud9.yml)  | XX  |
-| **us-west-2**  | XX | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab.yaml) |
+| **us-west-2**  | XX | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab.yml) |
 
 - <b>Note: Use VSCode link in `us-west-2` for deploying code-server (VSCode IDE).</b>
 
