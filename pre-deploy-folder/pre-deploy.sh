@@ -112,12 +112,30 @@ install_kubeseal() {
     echo "kubeseal installation complete."
 }
 
+# Function to install Docker
+install_docker() {
+    echo "Installing Docker..."
+    sudo yum update -y
+    sudo yum install -y docker || { echo "Docker installation failed. Exiting."; exit 1; }
+    sudo systemctl enable docker
+    sudo systemctl start docker
+    echo "Docker installation complete."
+
+    echo "Adding current user to the Docker group..."
+    sudo usermod -aG docker $(whoami)
+    sudo usermod -aG docker $(ec2-user)
+    sudo newgrp docker
+    echo "Docker setup complete. Log out and log back in to use Docker without sudo."
+}
+
 # Function to check if a binary is installed
 check_binary() {
     if ! command -v $1 &> /dev/null; then
         echo "$1 not found. Installing $1..."
         if [ "$1" = "jq" ] || [ "$1" = "envsubst" ]; then
             install_utilities
+        elif [ "$1" = "docker" ]; then
+            install_docker
         else
             install_$1
         fi
@@ -125,6 +143,7 @@ check_binary() {
         echo "$1 is already installed."
     fi
 }
+
 
 # Check CPU architecture
 ARCH=$(uname -m)
@@ -159,5 +178,8 @@ check_binary jq
 check_binary yq
 check_binary helm
 check_binary kubeseal
+check_binary docker
+check_binary docker
+
 
 echo "Pre-deployment checks and installations are complete."
