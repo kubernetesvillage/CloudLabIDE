@@ -120,12 +120,7 @@ install_docker() {
     sudo systemctl enable docker
     sudo systemctl start docker
     echo "Docker installation complete."
-
-    echo "Adding current user to the Docker group..."
-    sudo usermod -aG docker $(whoami)
-    sudo usermod -aG docker $(ec2-user)
     sudo chmod 666 /var/run/docker.sock
-    sudo newgrp docker
     echo "Docker setup complete. Log out and log back in to use Docker without sudo."
 }
 
