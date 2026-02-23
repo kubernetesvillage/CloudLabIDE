@@ -16,10 +16,10 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
 
 | Region         | OS Type        | VSCode            |
 |----------------|----------------|---------------------------------------|
-| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab-amlinux-useast1.yml)  |
-| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab-ubuntu-useast1.yml) |
-| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab-amlinux-uswest2.yml) |
-| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://kubernetesvillage-vscode.s3.us-west-2.amazonaws.com/vscodecloud-lab-ubuntu-uswest2.yml) |
+| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/main/cloudformation-template/vscode-al2023-us-east-1.yml)  |
+| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/main/cloudformation-template/vscode-ubuntu2204-us-east-1.yml) |
+| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/main/cloudformation-template/vscode-al2023-us-west-2.yml) |
+| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/main/cloudformation-template/vscode-ubuntu2204-us-west-2.yml) |
 
 ### Setup Instructions
 
