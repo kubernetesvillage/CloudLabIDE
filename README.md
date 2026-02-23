@@ -4,6 +4,9 @@ This repository contains CloudFormation templates to quickly set up VSCode (code
 
 > **Authored by:** Anjali Singh Shukla & Divyanshu Shukla
 
+## Security Notice
+
+> **⚠️ IMPORTANT:** These templates store VSCode passwords in **plain text** in the code-server configuration file. This is acceptable for **lab and training environments only** and is **NOT recommended for production use**. 
 
 
 ---
