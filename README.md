@@ -16,10 +16,10 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
 
 | Region         | OS Type        | VSCode            |
 |----------------|----------------|---------------------------------------|
-| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsec-al2023-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-east-1.yml)  |
-| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsec-ubuntu2204-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-east-1.yml) |
-| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsec-al2023-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-west-2.yml) |
-| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsec-ubuntu2204-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-west-2.yml) |
+| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsecurity-al2023-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-east-1.yml)  |
+| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsecurity-ubuntu2204-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-east-1.yml) |
+| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsecurity-al2023-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-west-2.yml) |
+| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsecurity-ubuntu2204-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-west-2.yml) |
 
 ### Required AWS Permissions
 
