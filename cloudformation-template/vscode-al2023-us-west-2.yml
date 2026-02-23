@@ -124,7 +124,7 @@ Resources:
   IdeInstanceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: eks-workshop-ide-role
+      RoleName: !Sub "${StackName}-ide-role"
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -138,7 +138,7 @@ Resources:
         - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
         - arn:aws:iam::aws:policy/AdministratorAccess
       Policies:
-        - PolicyName: EksWorkshopIdeSecretsManagerPolicy
+        - PolicyName: !Sub "${StackName}-secrets-policy"
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -152,7 +152,7 @@ Resources:
   IdeInstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
-      InstanceProfileName: eks_workshop_ide_instance_profile
+      InstanceProfileName: !Sub "${StackName}-instance-profile"
       Roles:
         - !Ref IdeInstanceRole
 
