@@ -16,7 +16,7 @@ Parameters:
     Description: Version of Code Server to use
   StackName:
     Type: String
-    Default: eks-workshop
+    Default: peachycloudsecurity-al2023-uswest2
     Description: The name of the CloudFormation stack
 
 Resources:
