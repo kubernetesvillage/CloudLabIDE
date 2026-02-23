@@ -182,11 +182,11 @@ Resources:
           curl -Ls -o /tmp/code-server.deb https://github.com/coder/code-server/releases/download/v${CodeServerVersion}/code-server_${CodeServerVersion}_amd64.deb
           dpkg -i /tmp/code-server.deb
           npm cache clean --force
-          npm install -g argon2
           systemctl enable code-server@ubuntu
           PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-          HASHED_PASSWORD=$(node -e "const argon2 = require('/usr/local/lib/node_modules/argon2'); argon2.hash('$IDE_PASSWORD').then(console.log).catch(console.error)")
+          SALT=$(openssl rand -base64 8)
+          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD" | argon2 "$SALT" -id -t 3 -m 16 -p 4 -e)
           echo "Generated Hash: $HASHED_PASSWORD"
           sudo -u ubuntu mkdir -p /home/ubuntu/.config/code-server/
           sudo -u ubuntu touch /home/ubuntu/.config/code-server/config.yaml
