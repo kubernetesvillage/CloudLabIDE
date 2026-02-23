@@ -41,7 +41,7 @@ Resources:
       EnableDnsHostnames: true
       Tags:
         - Key: Name
-          Value: eks_vpc
+          Value: peachycloudsec-eks_vpc
 
   # Internet Gateway
   EksIgw:
@@ -49,7 +49,7 @@ Resources:
     Properties:
       Tags:
         - Key: Name
-          Value: eks_igw
+          Value: peachycloudsec-eks_igw
 
   EksVpcIgwAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -70,7 +70,7 @@ Resources:
           - Fn::GetAZs: !Ref Region
       Tags:
         - Key: Name
-          Value: public_subnet
+          Value: peachycloudsec-public_subnet
 
   # Route Table
   PublicRouteTable:
@@ -79,7 +79,7 @@ Resources:
       VpcId: !Ref EksVpc
       Tags:
         - Key: Name
-          Value: public_route_table
+          Value: peachycloudsec-public_route_table
 
   PublicRoute:
     Type: AWS::EC2::Route
@@ -118,7 +118,7 @@ Resources:
           CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
-          Value: ide_sg
+          Value: peachycloudsec-ide_sg
 
   # IAM Role for EC2 Instance
   IdeInstanceRole:
@@ -200,7 +200,7 @@ Resources:
           curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
       Tags:
         - Key: Name
-          Value: eks-workshop-ide
+          Value: peachycloudsec-eks-workshop-ide
 
   # CloudFront Distribution
   VSCodeDistribution:
