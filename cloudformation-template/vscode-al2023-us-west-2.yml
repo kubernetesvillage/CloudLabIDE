@@ -176,25 +176,23 @@ Resources:
         Fn::Base64: !Sub |
           #!/bin/bash
           set -x  # Print each command before executing it (for debugging)
-          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq
+          yum install -y git tar gzip vim nodejs npm make gcc g++ awscli jq python3-pip
+          pip3 install bcrypt
           curl -Ls -o /tmp/coderinstall.rpm https://github.com/coder/code-server/releases/download/v4.91.1/code-server-4.91.1-amd64.rpm
           sudo rpm -U "/tmp/coderinstall.rpm"
           npm cache clean --force
           systemctl enable code-server@ec2-user
           PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-          SALT=$(openssl rand -base64 8)
-          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD" | argon2 "$SALT" -id -t 3 -m 16 -p 4 -e)
-          echo "Generated Hash: $HASHED_PASSWORD"
+          HASHED_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw('$IDE_PASSWORD'.encode('utf-8'), bcrypt.gensalt(rounds=10)).decode('utf-8'))")
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
-          sudo -u ec2-user touch /home/ec2-user/.config/code-server/config.yaml
           sudo -u ec2-user bash << EOF_USER
-          cat << 'CONFIG_EOF' > /home/ec2-user/.config/code-server/config.yaml
-          bind-addr: 0.0.0.0:8080
-          auth: password
-          hashed-password: "$HASHED_PASSWORD"
-          cert: false
-          CONFIG_EOF
+          cat > /home/ec2-user/.config/code-server/config.yaml << CONFIG_EOF
+bind-addr: 0.0.0.0:8080
+auth: password
+hashed-password: "$HASHED_PASSWORD"
+cert: false
+CONFIG_EOF
           EOF_USER
           systemctl start code-server@ec2-user
           curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
