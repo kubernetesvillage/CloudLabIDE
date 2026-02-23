@@ -29,8 +29,9 @@ Resources:
       GenerateSecretString:
         SecretStringTemplate: '{"username": "vscode-user"}'
         GenerateStringKey: "password"
-        PasswordLength: 32
-        ExcludeCharacters: '"\''@/\'
+        PasswordLength: 16
+        RequireEachIncludedType: false
+        ExcludeCharacters: '!"#$%&''()*+,-./:;<=>?@[\]^_`{|}~'
 
   # VPC
   EksVpc:
@@ -178,24 +179,15 @@ Resources:
           set -x  # Print each command before executing it (for debugging)
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -y
-          apt-get install -y git tar gzip vim nodejs npm build-essential awscli jq curl unzip python3-pip
-          pip3 install bcrypt
+          apt-get install -y git tar gzip vim nodejs npm build-essential awscli jq curl unzip
           curl -Ls -o /tmp/code-server.deb https://github.com/coder/code-server/releases/download/v${CodeServerVersion}/code-server_${CodeServerVersion}_amd64.deb
           dpkg -i /tmp/code-server.deb
           npm cache clean --force
           systemctl enable code-server@ubuntu
           PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-          HASHED_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw('$IDE_PASSWORD'.encode('utf-8'), bcrypt.gensalt(rounds=10)).decode('utf-8'))")
           sudo -u ubuntu mkdir -p /home/ubuntu/.config/code-server/
-          sudo -u ubuntu bash << EOF_USER
-          cat > /home/ubuntu/.config/code-server/config.yaml << CONFIG_EOF
-bind-addr: 0.0.0.0:8080
-auth: password
-hashed-password: "$HASHED_PASSWORD"
-cert: false
-CONFIG_EOF
-          EOF_USER
+          echo -e "bind-addr: 0.0.0.0:8080\nauth: password\npassword: $IDE_PASSWORD\ncert: false" | sudo -u ubuntu tee /home/ubuntu/.config/code-server/config.yaml > /dev/null
           systemctl start code-server@ubuntu
           curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
       Tags:
