@@ -182,9 +182,10 @@ Resources:
           sudo rpm -U "/tmp/coderinstall.rpm"
           npm cache clean --force
           systemctl enable code-server@ec2-user
-          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
+          PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --region ${Region} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
+          # NOTE: Password is stored in plain text in config.yaml - acceptable for labs, NOT for production
           echo -e "bind-addr: 0.0.0.0:8080\nauth: password\npassword: $IDE_PASSWORD\ncert: false" | sudo -u ec2-user tee /home/ec2-user/.config/code-server/config.yaml > /dev/null
           systemctl start code-server@ec2-user
           curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
