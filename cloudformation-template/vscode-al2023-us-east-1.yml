@@ -186,12 +186,7 @@ Resources:
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
           HASHED_PASSWORD=$(python3 -c "import bcrypt; print(bcrypt.hashpw('$IDE_PASSWORD'.encode('utf-8'), bcrypt.gensalt(rounds=10)).decode('utf-8'))")
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
-          sudo -u ec2-user tee /home/ec2-user/.config/code-server/config.yaml > /dev/null <<EOF
-bind-addr: 0.0.0.0:8080
-auth: password
-hashed-password: $HASHED_PASSWORD
-cert: false
-EOF
+          echo -e "bind-addr: 0.0.0.0:8080\nauth: password\nhashed-password: $HASHED_PASSWORD\ncert: false" | sudo -u ec2-user tee /home/ec2-user/.config/code-server/config.yaml > /dev/null
           systemctl start code-server@ec2-user
           curl -fsSL https://raw.githubusercontent.com/kubernetesvillage/CloudLabIDE/refs/heads/main/pre-deploy-folder/pre-deploy.sh | bash
       Tags:
