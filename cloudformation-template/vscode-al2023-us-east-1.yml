@@ -180,11 +180,11 @@ Resources:
           curl -Ls -o /tmp/coderinstall.rpm https://github.com/coder/code-server/releases/download/v4.91.1/code-server-4.91.1-amd64.rpm
           sudo rpm -U "/tmp/coderinstall.rpm"
           npm cache clean --force
-          npm install -g argon2
           systemctl enable code-server@ec2-user
           PASSWORD_SECRET=$(aws secretsmanager get-secret-value --secret-id ${VSCodePasswordSecret} --query 'SecretString' --output text)
           IDE_PASSWORD=$(echo "$PASSWORD_SECRET" | jq -r '.password')
-          HASHED_PASSWORD=$(node -e "const argon2 = require('/usr/local/lib/node_modules/argon2'); argon2.hash('$IDE_PASSWORD').then(console.log).catch(console.error)")
+          SALT=$(openssl rand -base64 8)
+          HASHED_PASSWORD=$(echo -n "$IDE_PASSWORD" | argon2 "$SALT" -id -t 3 -m 16 -p 4 -e)
           echo "Generated Hash: $HASHED_PASSWORD"
           sudo -u ec2-user mkdir -p /home/ec2-user/.config/code-server/
           sudo -u ec2-user touch /home/ec2-user/.config/code-server/config.yaml
