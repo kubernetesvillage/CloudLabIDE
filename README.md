@@ -16,10 +16,54 @@ Use the AWS CloudFormation quick-create links below to launch the desired enviro
 
 | Region         | OS Type        | VSCode            |
 |----------------|----------------|---------------------------------------|
-| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-east-1.yml)  |
-| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-east-1.yml) |
-| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-west-2.yml) |
-| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=aws-peachycloudsecurity-workshop&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-west-2.yml) |
+| **us-east-1**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsec-al2023-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-east-1.yml)  |
+| **us-east-1**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=peachycloudsec-ubuntu2204-useast1&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-east-1.yml) |
+| **us-west-2**  | Amazon Linux   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsec-al2023-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-al2023-us-west-2.yml) |
+| **us-west-2**  | Ubuntu 22.04   | [Launch](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?stackName=peachycloudsec-ubuntu2204-uswest2&templateURL=https://peachycloudsecurity-vscode.s3.us-west-2.amazonaws.com/vscode-ubuntu2204-us-west-2.yml) |
+
+### Required AWS Permissions
+
+The IAM user/role deploying this stack requires the following permissions:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:DescribeStacks",
+        "cloudformation:UpdateStack",
+        "ec2:*",
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:CreateInstanceProfile",
+        "iam:DeleteInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:RemoveRoleFromInstanceProfile",
+        "iam:PassRole",
+        "secretsmanager:CreateSecret",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "cloudfront:CreateDistribution",
+        "cloudfront:DeleteDistribution",
+        "cloudfront:GetDistribution",
+        "cloudfront:UpdateDistribution"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+**Note:** For production environments, restrict `Resource: "*"` to specific ARNs. The stack uses `AdministratorAccess` policy for the EC2 instance role to facilitate workshop activities.
 
 ### Setup Instructions
 
@@ -77,9 +121,25 @@ This project is maintained by the Kubernetes Village team. Contributions are wel
 
 For more information, visit our [GitHub page](https://github.com/kubernetesvillage).
 
+## Peachycloud Security
 
-## Follow us:
+Hands-On Multi-Cloud & Cloud-Native Security Education
 
-- [Kubernetes Village](https://www.linkedin.com/company/kubernetesvillage/)
-- [Anjali Shukla](https://linktr.ee/theshukladuo)
-- [Divyanshu Shukla](https://linktr.ee/theshukladuo)
+Created by The Shukla Duo (Anjali & Divyanshu), this tool is part of our mission to make cloud security accessible through practical, hands-on learning. We specialize in AWS, GCP, Kubernetes security, and DevSecOps practices.
+
+### Learn & Grow
+
+Explore our educational content and training programs:
+
+[YouTube Channel](https://www.youtube.com/@peachycloudsecurity) | [Website](https://peachycloudsecurity.com) | [1:1 Consultations](https://topmate.io/peachycloudsecurity)
+
+Learn cloud security through hands-on labs, real-world scenarios, and practical tutorials covering GCP & AWS, GKE & EKS, Kubernetes, Containers, DevSecOps, and Threat Modeling.
+
+### Support Our Work
+
+If this tool helps you secure your infrastructure, consider supporting our educational mission:
+
+[Sponsor on GitHub](https://github.com/sponsors/peachycloudsecurity)
+
+Your support helps us create more free educational content and security tools for the community.
+
