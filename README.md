@@ -104,10 +104,7 @@ To avoid unnecessary costs, be sure to delete the CloudFormation stacks and any 
 - The views expressed are solely those of the speaker and do not reflect the opinions of the employer. Use at your own risk.
 - The password is temporary and regenerates each time the script runs.
 - Do not push this code while the VS Code server is running.
-- The author is not responsible for any charges or security issues that may arise. This is shared under the MIT 0 license. 
-
-## License
-
+- The employer or employee is not responsible for any charges or security issues that may arise. Also views are personal
 - This project is licensed under the GPL-3.0 license. See the [LICENSE](LICENSE) file for details.
 - This repository uses code from the [AWS EKS Workshop](https://github.com/aws-samples/eks-workshop-v2/), licensed under the Apache-2.0.
 
