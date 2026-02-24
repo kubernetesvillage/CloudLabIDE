@@ -119,7 +119,7 @@ To avoid unnecessary costs, be sure to delete the CloudFormation stacks and any 
 
 This project is maintained by the peachycloudsecurity. Contributions are welcome!
 
-For more information, visit our [GitHub page](https://peachycloudsecurity.com/).
+For more information, visit our [website](https://peachycloudsecurity.com/).
 
 ## Peachycloud Security
 
