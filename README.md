@@ -2,7 +2,7 @@
 
 This repository contains CloudFormation templates to quickly set up VSCode (code-server) instances in us-east-1 and us-west-2 regions. Templates are pre-configured with necessary permissions and are ready to be used for cloud security-related workshops or development.
 
-> **Authored by:** Anjali Singh Shukla & Divyanshu Shukla
+> [**Authored by:** Anjali Singh Shukla & Divyanshu Shukla](https://peachycloudsecurity.com/about)
 
 ## Security Notice
 
