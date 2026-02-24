@@ -120,9 +120,9 @@ To avoid unnecessary costs, be sure to delete the CloudFormation stacks and any 
 - Thanks to [AWS eks-workshop-v2](https://github.com/aws-samples/eks-workshop-v2/blob/main/lab/scripts/installer.sh)
 
 
-This project is maintained by the Kubernetes Village team. Contributions are welcome!
+This project is maintained by the peachycloudsecurity. Contributions are welcome!
 
-For more information, visit our [GitHub page](https://github.com/kubernetesvillage).
+For more information, visit our [GitHub page](https://peachycloudsecurity.com/).
 
 ## Peachycloud Security
 
